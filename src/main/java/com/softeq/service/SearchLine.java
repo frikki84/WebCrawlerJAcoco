@@ -1,9 +1,9 @@
 package com.softeq.service;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -12,6 +12,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
+/**
+ * Class SearchLine for parsing one page by given link
+ */
 @Component
 public class SearchLine {
 
@@ -31,17 +34,10 @@ public class SearchLine {
             Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
             Document htmlDocument = connection.get();
             this.htmlDocument = htmlDocument;
-//            if (connection.response().statusCode() == 200) // 200 is the HTTP OK status code
-//            // indicating that everything is great.
-//            {
-//                System.out.println("\n**Visiting** Received web page at " + url);
-//            }
             if (!connection.response().contentType().contains("text/html")) {
-               // System.out.println("**Failure** Retrieved something other than HTML");
                 return false;
             }
             Elements linksOnPage = htmlDocument.select("a[href]");
-           // System.out.println("Found (" + linksOnPage.size() + ") links");
             for (Element link : linksOnPage) {
                 this.links.add(link.absUrl("href"));
             }
@@ -60,24 +56,15 @@ public class SearchLine {
      * @return whether or not the word was found
      */
     public long searchForWord(String searchWord) {
-        // Defensive coding. This method should only be used after a successful crawl.
         long count = 0;
-        if (this.htmlDocument == null) {
-            //System.out.println("ERROR! Call crawl() before performing analysis on the document");
+
+        if (Objects.isNull(this.htmlDocument) || Objects.isNull(this.htmlDocument.body())) {
             return count;
         }
-        //System.out.println("Searching for the word " + searchWord + "...");
         String bodyText = this.htmlDocument.body().text().toLowerCase();
         searchWord = searchWord.toLowerCase();
-        //if (bodyText.contains(searchWord)) {
         String finalSearchWord = searchWord;
         count = Arrays.stream(bodyText.split("\\W")).filter(str -> str.equals(finalSearchWord)).count();
-//            for (String item : list) {
-//                if (item.equals(searchWord)) {
-//                    count++;
-//                }
-//            }
-    //}
         return count;
     }
 

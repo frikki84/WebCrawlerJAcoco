@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO- entity, used between ParsingEntity and CsvEntity
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

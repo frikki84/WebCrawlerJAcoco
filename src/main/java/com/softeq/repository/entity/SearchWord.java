@@ -13,6 +13,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Additional information for ParsingRequest
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

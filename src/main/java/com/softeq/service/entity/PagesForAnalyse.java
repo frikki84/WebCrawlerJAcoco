@@ -8,6 +8,9 @@ import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * Entity is used only for SearchLine class: links which was parsed move from pagesToVisitNext to visitedPage
+ */
 @Data
 @AllArgsConstructor
 public class PagesForAnalyse {

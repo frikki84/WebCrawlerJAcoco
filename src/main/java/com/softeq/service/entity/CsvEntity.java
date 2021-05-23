@@ -7,6 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entity for showing info to user on screen or creation csv-file
+ * Entities are comparable by fullCount
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

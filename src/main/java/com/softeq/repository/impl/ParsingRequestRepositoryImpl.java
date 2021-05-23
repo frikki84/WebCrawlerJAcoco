@@ -25,18 +25,5 @@ public class ParsingRequestRepositoryImpl implements ParsingRequestRepository {
         return request;
     }
 
-    @Override
-    public Long deleteRequest(Long requstId) {
-        return null;
-    }
 
-    @Override
-    public List<ParsingRequest> findAll() {
-        return null;
-    }
-
-    @Override
-    public ParsingRequest findRequest(Long id) {
-        return entityManager.find(ParsingRequest.class, id);
-    }
 }

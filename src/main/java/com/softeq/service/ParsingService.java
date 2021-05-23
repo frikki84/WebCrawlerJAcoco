@@ -25,6 +25,9 @@ import com.softeq.service.entity.ParsingEntityDto;
 import com.softeq.service.entity.SearchParameter;
 import com.softeq.service.entity.SearchWordCountEntity;
 
+/**
+ * Main Service class. Use for connection work of Controller and Repositories. Use business logic
+ */
 @Service
 public class ParsingService {
 
@@ -45,6 +48,12 @@ public class ParsingService {
         this.seachWordRepository = seachWordRepository;
     }
 
+    /**
+     * method is used for taking SearchParameter, making parsing and showing the
+     * results to the user's screen
+     * @param parameter
+     * @return List<CsvEntity>
+     */
     public List<CsvEntity> findResultsByCriteria(SearchParameter parameter) {
         List<ParsingEntityDto> resultsFromInternet = searcher.search(parameter);
         ParsingRequest request = createRequest(parameter);
@@ -53,6 +62,13 @@ public class ParsingService {
         return mapper.changeListParsingEntitiesDtoToCsv(resultList);
     }
 
+    /**
+     * method is used for taking SearchParameter and the number of the biggest values, which user wants
+     * to watch,making parsing, sorting the result by decs and showing the results to the user's screen
+     * @param parameter
+     * @param number
+     * @return List<CsvEntity>
+     */
     public List<CsvEntity> findFirstBiggestResults(SearchParameter parameter, int number) {
         List<CsvEntity> list = findResultsByCriteria(parameter);
         List<CsvEntity> sortedList = list.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
@@ -62,27 +78,36 @@ public class ParsingService {
         return sortedList.subList(0, number);
     }
 
+    /**
+     * method is used for taking SearchParameter, making parsing and using results
+     * for creating csv-file in nessesary format. The separator between points is ,
+     * @param parameter
+     */
     public void createCsvFile(SearchParameter parameter) {
         List<CsvEntity> list = findResultsByCriteria(parameter);
         writeToCSV(parameter, list);
 
     }
-
+    /**
+     * method is used for taking SearchParameter and the number of the biggest values, which user wants
+     * to watch, making parsing , sorting results by decs for creating csv-file
+     * in nessesary format. The separator between points is ,
+     * @param parameter
+     */
     public void createCsvFileWithBiggestResults(SearchParameter parameter, int number) {
         List<CsvEntity> list = findFirstBiggestResults(parameter, number);
         writeToCSV(parameter, list);
 
     }
 
-    private ParsingRequest createRequest(SearchParameter parameter) {
+    public ParsingRequest createRequest(SearchParameter parameter) {
         ParsingRequest request = new ParsingRequest();
         LocalDateTime time = LocalDateTime.now();
         request.setCreationTime(time);
         request.setSearchUrl(parameter.getUrl());
         List<SearchWord> words = mapper.createSearchWordListFromSearchParametr(parameter);
         request.setSearchWords(words);
-        parsingRequestRepository.createRequest(request);
-        return request;
+        return parsingRequestRepository.createRequest(request);
     }
 
     private List<ParsingEntityDto> addRequestToParsingEntities(List<ParsingEntityDto> dtos, ParsingRequest request) {

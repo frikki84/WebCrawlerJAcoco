@@ -17,6 +17,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entity to registrate every attempt to use this application
+ */
 @Data
 @Entity
 @Table(name = "parsing_entity")

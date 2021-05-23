@@ -14,6 +14,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entity for storing token information after parsing to database
+ */
 @Data
 @Entity
 @NoArgsConstructor
