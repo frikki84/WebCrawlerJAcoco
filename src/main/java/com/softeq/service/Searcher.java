@@ -15,7 +15,7 @@ import com.softeq.service.entity.SearchParameter;
 @Service
 public class Searcher {
 
-    private static final int MAX_PAGES_TO_SEARCH = 10000;
+    private static final int MAX_PAGES_TO_SEARCH = 10;
     private static final int MAX_DEEP_PARSING = 8;
 
     /**
