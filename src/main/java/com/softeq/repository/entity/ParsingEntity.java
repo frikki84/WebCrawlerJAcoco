@@ -38,4 +38,7 @@ public class ParsingEntity {
     @JoinColumn(name = "parsing_entity", nullable = false)
     private ParsingRequest parsingRequest;
 
+    public void setId(long id) {
+        this.id = id;
+    }
 }
