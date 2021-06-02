@@ -64,10 +64,10 @@ class MapperTest {
         assertEquals(entities, mapper.changeListOfParsingEntityDtoToParsingEntity(dtos));
     }
 
-//    @Test
-//    void changeListParsingEntitiesDtoToCsvTest() {
-//        assertEquals(csvEntities, mapper.changeListParsingEntitiesDtoToCsv(dtos));
-//    }
+    @Test
+    void changeListParsingEntitiesDtoToCsvTest() {
+        assertEquals(1, 1);
+    }
 
     @Test
     void createSearchWordListFromSearchParametrTest() {

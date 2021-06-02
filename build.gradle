@@ -6,6 +6,8 @@ plugins {
     id 'jacoco'
 }
 
+
+
 group 'com.softeq'
 version '1.0.0'
 
@@ -41,9 +43,9 @@ jacoco {
 jacocoTestReport {
     dependsOn test
     reports {
-        xml.enabled true
+        xml.enabled false
         csv.enabled false
-        html.enabled false
+        html.enabled true
     }
 }
 

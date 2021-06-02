@@ -70,23 +70,5 @@ class ParsingServiceTest {
 
     }
 
-    @Test
-    void createCsvFile() {
 
-    }
-
-    @Test
-    void createCsvFileWithBiggestResults() {
-    }
-
-    @Test
-    void createRequest() {
-//        List<SearchWord> words = Arrays.asList(new SearchWord());
-//        request.setCreationTime(LocalDateTime.now());
-//        request.setSearchWords(words);
-//        Mockito.when(mapper.createSearchWordListFromSearchParametr(parameter)).thenReturn(words);
-//        Mockito.when(parsingRequestRepository.createRequest(request)).thenReturn(request);
-//        assertEquals(request.getSearchWords(), parsingService.createRequest(parameter).getSearchWords());
-
-    }
 }
